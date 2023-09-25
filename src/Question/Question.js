@@ -49,7 +49,7 @@ export default function Question() {
         }),
         {
           headers: {
-            'x-api-key': '987654',
+            'x-api-key': '987655',
             'content-type': 'application/x-www-form-urlencoded',
           },
         }
@@ -66,7 +66,7 @@ export default function Question() {
   useEffect(() => {
     axios
       .get(WEB_BASE + 'question_category', {
-        headers: { 'x-api-key': '987654' },
+        headers: { 'x-api-key': '987655' },
       })
       .then((res) => {
         setQuestions(res.data.result)

@@ -23,7 +23,7 @@ export default function Chart() {
   useEffect(() => {
     axios
       .get(WEB_BASE + 'count_question_category', {
-        headers: { 'x-api-key': '987654' },
+        headers: { 'x-api-key': '987655' },
       })
       .then((res) => {
         setQuestion(res.data.result[0].Number_of_question_Category)
@@ -32,7 +32,7 @@ export default function Chart() {
 
     axios
       .get(WEB_BASE + 'count_needy_category', {
-        headers: { 'x-api-key': '987654' },
+        headers: { 'x-api-key': '987655' },
       })
       .then((res) => {
         setNeedy(res.data.result[0].Number_of_Needy_category)
@@ -40,14 +40,14 @@ export default function Chart() {
       .catch((err) => console.log(err))
 
     axios
-      .get(WEB_BASE + 'count_sheikh', { headers: { 'x-api-key': '987654' } })
+      .get(WEB_BASE + 'count_sheikh', { headers: { 'x-api-key': '987655' } })
       .then((res) => {
         setSheikh(res.data.result[0].Number_of_Sheikh)
       })
       .catch((err) => console.log(err))
 
     axios
-      .get(WEB_BASE + 'friday_donation', { headers: { 'x-api-key': '987654' } })
+      .get(WEB_BASE + 'friday_donation', { headers: { 'x-api-key': '987655' } })
       .then((res) => {
         setFridayDonation(res.data.result[0].Number_of_Friday_donation)
       })
@@ -57,7 +57,7 @@ export default function Chart() {
       .get(
         'https://mosquepay.org/mosquepayapi/v1/api/campaigns_total_donation',
         {
-          headers: { 'x-api-key': '987654' },
+          headers: { 'x-api-key': '987655' },
         }
       )
       .then((res) => {
@@ -72,7 +72,7 @@ export default function Chart() {
       const res = await axios.get(
         `https://mosquepay.org/mosquepayapi/v1/api/campaigns_total_donation`,
         {
-          headers: { 'x-api-key': '987654' },
+          headers: { 'x-api-key': '987655' },
         }
       )
       // console.log(res.data.total_number_of_user)

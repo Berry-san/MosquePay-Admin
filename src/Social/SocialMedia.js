@@ -28,7 +28,7 @@ export default function SocialMedia() {
 
   useEffect(() => {
     axios
-      .get(WEB_BASE + 'social_media', { headers: { 'x-api-key': '987654' } })
+      .get(WEB_BASE + 'social_media', { headers: { 'x-api-key': '987655' } })
       .then((res) => {
         setSocialMedia(res.data.result)
       })

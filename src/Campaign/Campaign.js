@@ -33,9 +33,9 @@ export default function Campaign() {
 
   useEffect(() => {
     axios
-      // .get(WEB_BASE + 'short_campaign', { headers: { 'x-api-key': '987654' } })
+      // .get(WEB_BASE + 'short_campaign', { headers: { 'x-api-key': '987655' } })
       .get('https://mosquepay.org/mosquepayapi/v1/api/short_campaign', {
-        headers: { 'x-api-key': '987654' },
+        headers: { 'x-api-key': '987655' },
       })
       .then((res) => {
         setCampaign(res.data.result)

@@ -32,7 +32,7 @@ export default function EmailSubscriber() {
 
   useEffect(() => {
     axios
-      .get(WEB_BASE + 'email_subcriber', { headers: { 'x-api-key': '987654' } })
+      .get(WEB_BASE + 'email_subcriber', { headers: { 'x-api-key': '987655' } })
       .then((res) => {
         setEmailSubscriber(res.data.result)
       })

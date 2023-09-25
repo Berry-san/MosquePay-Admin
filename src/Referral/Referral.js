@@ -32,7 +32,7 @@ function Referral() {
   useEffect(() => {
     axios
       .get(WEB_BASE + 'campaign_payment_details', {
-        headers: { 'x-api-key': '987654' },
+        headers: { 'x-api-key': '987655' },
       })
       .then((res) => {
         setCampaign(res.data.result)

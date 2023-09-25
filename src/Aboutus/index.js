@@ -30,7 +30,7 @@ export default function Aboutus() {
 
   useEffect(() => {
     axios
-      .get(WEB_BASE + 'about_us_list', { headers: { 'x-api-key': '987654' } })
+      .get(WEB_BASE + 'about_us_list', { headers: { 'x-api-key': '987655' } })
       .then((res) => {
         setMessage(res.data.result)
         console.log(res.data.result)

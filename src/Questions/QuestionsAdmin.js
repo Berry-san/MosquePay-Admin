@@ -28,7 +28,7 @@ function QuestionsAdmin() {
   useEffect(() => {
     axios
       .get(WEB_BASE + 'list_allquestion', {
-        headers: { 'x-api-key': '987654' },
+        headers: { 'x-api-key': '987655' },
       })
       .then((res) => {
         setQuestions(res.data.result)

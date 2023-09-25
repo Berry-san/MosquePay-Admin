@@ -34,9 +34,9 @@ export default function Seminar() {
 
   useEffect(() => {
     axios
-      // .get(WEB_BASE + 'short_seminar', { headers: { 'x-api-key': '987654' } })
+      // .get(WEB_BASE + 'short_seminar', { headers: { 'x-api-key': '987655' } })
       .get('http://mosquepay.org/mosquepayapi/v1/api/list_seminar', {
-        headers: { 'x-api-key': '987654' },
+        headers: { 'x-api-key': '987655' },
       })
       .then((res) => {
         setSeminar(res.data.result)

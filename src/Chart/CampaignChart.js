@@ -97,7 +97,7 @@ export default function CampaignChart() {
 
   useEffect(() => {
     axios
-      .get(WEB_BASE + 'count_campaign', { headers: { 'x-api-key': '987654' } })
+      .get(WEB_BASE + 'count_campaign', { headers: { 'x-api-key': '987655' } })
       .then((res) => {
         setCampActive(res.data.result.APPROVE)
         setCampRejected(res.data.result.REJECT)

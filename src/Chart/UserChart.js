@@ -9,7 +9,7 @@ export default function UserChart() {
 
   useEffect(() => {
     axios
-      .get(WEB_BASE + 'count_all_user', { headers: { 'x-api-key': '987654' } })
+      .get(WEB_BASE + 'count_all_user', { headers: { 'x-api-key': '987655' } })
       .then((res) => {
         setActive(res.data.result.ACTIVE)
         setInActive(res.data.result.INACTIVE)

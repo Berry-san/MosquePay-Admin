@@ -32,7 +32,7 @@ export default function User() {
   useEffect(() => {
     axios
       .get(WEB_BASE + 'all_user_account', {
-        headers: { 'x-api-key': '987654' },
+        headers: { 'x-api-key': '987655' },
       })
       .then((res) => {
         setUsers(res.data.result)

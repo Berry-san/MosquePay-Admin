@@ -46,7 +46,7 @@ export default function Needy() {
         qs.stringify({ category: needyName, description: needyDescription }),
         {
           headers: {
-            'x-api-key': '987654',
+            'x-api-key': '987655',
             'content-type': 'application/x-www-form-urlencoded',
           },
         }
@@ -63,7 +63,7 @@ export default function Needy() {
   }
   useEffect(() => {
     axios
-      .get(WEB_BASE + 'needy_category', { headers: { 'x-api-key': '987654' } })
+      .get(WEB_BASE + 'needy_category', { headers: { 'x-api-key': '987655' } })
       .then((res) => {
         setNeedy(res.data.result)
       })

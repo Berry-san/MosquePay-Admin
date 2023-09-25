@@ -39,9 +39,9 @@ export default function CampaignList() {
 
   useEffect(() => {
     axios
-      // .get(WEB_BASE + 'short_list', { headers: { 'x-api-key': '987654' } })
+      // .get(WEB_BASE + 'short_list', { headers: { 'x-api-key': '987655' } })
       .get('http://mosquepay.org/mosquepayapi/v1/api/list_campaign_reference', {
-        headers: { 'x-api-key': '987654' },
+        headers: { 'x-api-key': '987655' },
       })
       .then((res) => {
         const dataWithId = res.data.result.map((item, index) => ({
@@ -57,7 +57,7 @@ export default function CampaignList() {
   //     const config = {
   //       headers: {
   //         'Content-Type': 'application/x-www-form-urlencoded',
-  //         'x-api-key': 987654,
+  //         'x-api-key': 987655,
   //       },
   //     }
   //     axios
@@ -88,7 +88,7 @@ export default function CampaignList() {
       const config = {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
-          'x-api-key': 987654,
+          'x-api-key': 987655,
         },
       }
       axios
@@ -154,31 +154,29 @@ export default function CampaignList() {
   }
 
   const handleExportExcel = () => {
-    exportToExcel(list)
+    exportToExcel(campaign)
   }
 
   const handleExportPDF = () => {
     const doc = new jsPDF()
-    const tableData = list.map((user) => [
-      user.fullname,
-      user.phonenumber,
-      user.whatsapp_number,
-      user.email,
-      user.inserted_dt,
+    const tableData = campaign.map((user) => [
+      user.payment_channel,
+      user.txn_count,
+      user.amt,
+      user.txn_date,
     ])
     autoTable(doc, {
-      head: [['Name', 'Phone Number', 'Whatsapp Number', 'Email', 'Date']],
+      head: [['Payment Channel', 'Transaction Count', 'Amount', 'Date']],
       body: tableData,
     })
     doc.save('list.pdf')
   }
 
-  const csvData = list.map((user) => ({
-    Name: user.fullname,
-    'Last Name': user.phonenumber,
-    'Whatsapp Number': user.whatsapp_number,
-    Email: user.email,
-    Date: user.inserted_dt,
+  const csvData = campaign.map((user) => ({
+    'Payment Channel': user.payment_channel,
+    'Transaction Count': user.txn_count,
+    Amount: user.amt,
+    Date: user.txn_date,
   }))
 
   const handlePrint = () => {
@@ -198,6 +196,7 @@ export default function CampaignList() {
                 width: 100%;
                 border-collapse: collapse;
                 margin-bottom: 1rem;
+                text: black
               }
               th, td {
                 padding: 0.5rem;
@@ -215,33 +214,29 @@ export default function CampaignList() {
             <thead>
               <tr>
                 
-                <th class="px-6">Name</th>
-                <th class="px-6">Phone Number</th>
-                <th class="px-6">Whatsapp Number</th>
-                <th class="px-6">Email</th>
+                <th class="px-6">Payment Channel</th>
+                <th class="px-6">Transaction Count</th>
+                <th class="px-6">Amount</th>
                 <th class="px-6">Date</th>
               </tr>
             </thead>
             <tbody>
-              ${list
+              ${campaign
                 .map(
-                  (item) => `
-                    <tr class="bg-white border-b text-black text-[13px]">
-                      <td class="px-6 py-4 font-medium">
-                        ${item.fullname}
+                  (camp) => `
+                    <tr key={camp.id} className="text-black tb-tnx-item">
+                      <td className="border-2">
+                        ${
+                          camp.payment_channel === ''
+                            ? 'FLUTTERWAVE'
+                            : camp.payment_channel
+                        }
                       </td>
-                      <td class="px-6 py-4">
-                        ${item.phonenumber}
+                      <td className="border-2">${camp.txn_count}</td>
+                      <td className="border-2">
+                        ${Number(camp.amt).toLocaleString()}
                       </td>
-                      <td class="px-6 py-4">
-                        ${item.whatsapp_number}
-                      </td>
-                      <td class="px-6 py-4">
-                       ${item.email}
-                      </td>
-                      <td class="px-6 py-4">
-                       ${item.inserted_dt}
-                      </td>
+                      <td className="border-2">${camp.txn_date}</td>
                     </tr>
                   `
                 )

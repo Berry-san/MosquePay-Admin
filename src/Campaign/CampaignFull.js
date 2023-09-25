@@ -49,7 +49,7 @@ export default function CampaignFull() {
   useEffect(() => {
     axios
       .get(WEB_BASE + `full_campaign/${id}`, {
-        headers: { 'x-api-key': '987654' },
+        headers: { 'x-api-key': '987655' },
       })
       .then((res) => {
         console.log(res)
@@ -92,7 +92,7 @@ export default function CampaignFull() {
         }),
         {
           headers: {
-            'x-api-key': '987654',
+            'x-api-key': '987655',
             'content-type': 'application/x-www-form-urlencoded',
           },
         }
@@ -111,7 +111,7 @@ export default function CampaignFull() {
     axios
       .post(WEB_BASE + 'bvn_confirmation', qs.stringify({ bvn: campBvn }), {
         headers: {
-          'x-api-key': '987654',
+          'x-api-key': '987655',
           'content-type': 'application/x-www-form-urlencoded',
         },
       })
@@ -130,7 +130,7 @@ export default function CampaignFull() {
 
     //    axios.post(WEB_BASE + 'bvn_confirmation',
     //   qs.stringify({bvn: campBvn, }),
-    //    {headers: {'x-api-key': '987654', 'content-type': 'application/x-www-form-urlencoded' }});
+    //    {headers: {'x-api-key': '987655', 'content-type': 'application/x-www-form-urlencoded' }});
 
     // }catch(e){
     //   console.log(e.response);
@@ -142,7 +142,7 @@ export default function CampaignFull() {
     axios
       .post(WEB_BASE + 'bvn_confirmation', qs.stringify({ bvn: campBvn2 }), {
         headers: {
-          'x-api-key': '987654',
+          'x-api-key': '987655',
           'content-type': 'application/x-www-form-urlencoded',
         },
       })

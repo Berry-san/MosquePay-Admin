@@ -16,7 +16,7 @@ export default function UpdateNeedy() {
   useEffect(() => {
     axios
       .get(WEB_BASE + `single_needycategory/${id}`, {
-        headers: { 'x-api-key': '987654' },
+        headers: { 'x-api-key': '987655' },
       })
       .then((res) => {
         console.log(res.data.result)
@@ -33,7 +33,7 @@ export default function UpdateNeedy() {
       axios.post(
         WEB_BASE + `update_needy_category/${id}`,
         qs.stringify({ category: needyName, description: needyDescription }),
-        { headers: { 'x-api-key': '987654' } }
+        { headers: { 'x-api-key': '987655' } }
       )
       alert('Needy details Updated Successfully')
       navigate('/needy')

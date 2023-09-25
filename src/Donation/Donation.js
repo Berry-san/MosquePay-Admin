@@ -39,7 +39,7 @@ export default function Donation() {
   useEffect(() => {
     axios
       .get(WEB_BASE + 'friday_donation_list', {
-        headers: { 'x-api-key': '987654' },
+        headers: { 'x-api-key': '987655' },
       })
       .then((res) => {
         setDonation(res.data.result)
@@ -57,7 +57,7 @@ export default function Donation() {
 
   useEffect(() => {
     axios
-      .get(WEB_BASE + 'needy_category', { headers: { 'x-api-key': '987654' } })
+      .get(WEB_BASE + 'needy_category', { headers: { 'x-api-key': '987655' } })
       .then((res) => {
         setNeedyD(res.data.result)
       })
@@ -79,7 +79,7 @@ export default function Donation() {
         }),
         {
           headers: {
-            'x-api-key': '987654',
+            'x-api-key': '987655',
             'content-type': 'application/x-www-form-urlencoded',
           },
         }

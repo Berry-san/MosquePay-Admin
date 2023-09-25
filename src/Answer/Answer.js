@@ -25,7 +25,7 @@ export default function Answer() {
   useEffect(() => {
     axios
       .get(WEB_BASE + `single_question/${id}`, {
-        headers: { 'x-api-key': '987654' },
+        headers: { 'x-api-key': '987655' },
       })
       .then((res) => {
         setQuestion(res.data.result[0].question)
@@ -44,7 +44,7 @@ export default function Answer() {
         qs.stringify({ question_id: id, answer: answer, sheikh_id: sheikh_id }),
         {
           headers: {
-            'x-api-key': '987654',
+            'x-api-key': '987655',
             'content-type': 'application/x-www-form-urlencoded',
           },
         }

@@ -46,7 +46,7 @@ export default function Sheikh() {
           email: sheikhEmail,
           popular_name: sheikhPassword,
         }),
-        { headers: { 'x-api-key': '987654' } }
+        { headers: { 'x-api-key': '987655' } }
       )
       alert('Sheikh Created Successfully')
       navigate('/sheikh')
@@ -58,7 +58,7 @@ export default function Sheikh() {
   }
   useEffect(() => {
     axios
-      .get(WEB_BASE + 'list_sheikh', { headers: { 'x-api-key': '987654' } })
+      .get(WEB_BASE + 'list_sheikh', { headers: { 'x-api-key': '987655' } })
       .then((res) => {
         setSheikh(res.data.result)
       })

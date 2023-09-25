@@ -17,7 +17,7 @@ export default function UpdateSheikh() {
   useEffect(() => {
     axios
       .get(WEB_BASE + `get_sheikh/${id}`, {
-        headers: { 'x-api-key': '987654' },
+        headers: { 'x-api-key': '987655' },
       })
       .then((res) => {
         console.log(res.data.result[0].email)
@@ -39,7 +39,7 @@ export default function UpdateSheikh() {
           email: email,
           popular_name: password,
         }),
-        { headers: { 'x-api-key': '987654' } }
+        { headers: { 'x-api-key': '987655' } }
       )
       alert('Sheikh Updated Successfully')
       navigate('/sheikh')
