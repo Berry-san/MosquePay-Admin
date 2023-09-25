@@ -67,11 +67,15 @@ export default function CampaignList() {
           config
         )
         .then((res) => {
-          const dataWithId = res.data.result.map((item, index) => ({
+          const dataWithId = res.data.result?.map((item, index) => ({
             ...item,
             id: index + 1,
           }))
-          setCampaign(dataWithId)
+          if (dataWithId) {
+            setCampaign(dataWithId)
+          } else {
+            setCampaign([])
+          }
         })
         .catch((err) => {
           console.log(err)
@@ -297,7 +301,7 @@ export default function CampaignList() {
                   name="campaign"
                   value={selectedOption}
                   onChange={handleSelectChange}
-                  className="p-2 rounded w-[22rem] xl:w-[26rem] focus:border-none bg-slate-200"
+                  className="p-2 rounded w-[22rem] xl:w-[26rem] focus:border-none mt-2 bg-[#F5F6FA]"
                 >
                   <option value="">--</option>
                   {list.map((list) => {
@@ -403,9 +407,7 @@ export default function CampaignList() {
                       </td>
                       <td className="border-2">{camp.txn_count}</td>
                       <td className="border-2">
-                        {typeof camp.amt === 'number'
-                          ? camp.amt.toLocaleString()
-                          : camp.amt}
+                        {Number(camp.amt).toLocaleString()}
                       </td>
                       <td className="border-2">{camp.txn_date}</td>
                     </tr>
@@ -415,6 +417,9 @@ export default function CampaignList() {
             </div>
             {list.length === 0 ? (
               <p className="text-center text-red-800 ">No list data found</p>
+            ) : null}
+            {productData.length === 0 ? (
+              <p className="text-center text-red-800 ">Select a campaign</p>
             ) : null}
             <div className="card-inner">
               {/* <PaginationComponent
