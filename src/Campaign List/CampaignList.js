@@ -52,6 +52,37 @@ export default function CampaignList() {
       })
   }, [])
 
+  // useEffect(() => {
+  //   if (selectedOption) {
+  //     const config = {
+  //       headers: {
+  //         'Content-Type': 'application/x-www-form-urlencoded',
+  //         'x-api-key': 987654,
+  //       },
+  //     }
+  //     axios
+  //       .post(
+  //         `http://mosquepay.org/mosquepayapi/v1/api/campiagn_payment_camp_ref`,
+  //         qs.stringify({ campaign_reference: selectedOption }),
+  //         config
+  //       )
+  //       .then((res) => {
+  //         const dataWithId = res.data.result?.map((item, index) => ({
+  //           ...item,
+  //           id: index + 1,
+  //         }))
+  //         if (dataWithId) {
+  //           setCampaign(dataWithId)
+  //         } else {
+  //           setCampaign([])
+  //         }
+  //       })
+  //       .catch((err) => {
+  //         console.log(err)
+  //         // setFetchingData(false)
+  //       })
+  //   }
+  // }, [selectedOption])
   useEffect(() => {
     if (selectedOption) {
       const config = {
@@ -67,11 +98,11 @@ export default function CampaignList() {
           config
         )
         .then((res) => {
-          const dataWithId = res.data.result?.map((item, index) => ({
-            ...item,
-            id: index + 1,
-          }))
-          if (dataWithId) {
+          if (res.data.result && Array.isArray(res.data.result)) {
+            const dataWithId = res.data.result.map((item, index) => ({
+              ...item,
+              id: index + 1,
+            }))
             setCampaign(dataWithId)
           } else {
             setCampaign([])
@@ -79,8 +110,10 @@ export default function CampaignList() {
         })
         .catch((err) => {
           console.log(err)
-          // setFetchingData(false)
+          setCampaign([])
         })
+    } else {
+      setCampaign([])
     }
   }, [selectedOption])
 
@@ -418,8 +451,8 @@ export default function CampaignList() {
             {list.length === 0 ? (
               <p className="text-center text-red-800 ">No list data found</p>
             ) : null}
-            {productData.length === 0 ? (
-              <p className="text-center text-red-800 ">Select a campaign</p>
+            {productData.length === 0 && list.length !== 0 ? (
+              <p className="text-center text-red-800">Select a campaign</p>
             ) : null}
             <div className="card-inner">
               {/* <PaginationComponent
