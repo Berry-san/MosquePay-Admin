@@ -2,8 +2,8 @@
 ///        INCLUDED THIRD-PARTY VENDORS         ///
 ///////////////////////////////////////////////////
 
-// Include NioIcon 
-@import "nioicon/nioicon";
+// Include NioIcon
+@import 'nioicon/nioicon';
 
 //FontAwesome Icons
 // $fa-font-path: "../fonts";
@@ -20,71 +20,71 @@
 // $bi-font-path : "../fonts";
 // @import "bootstrap-icons/bootstrap-icons";
 
-// Include Prettify 
-@import "prettify";
+// Include Prettify
+@import 'prettify';
 
 // Include React Beautiful dnd
-@import "dnd";
+@import 'dnd';
 
 // Include Simplebar
-@import "simplebar";
+@import 'simplebar';
 .simplebar-scroll-content {
-	@extend .simplebar-content-wrapper;
+  @extend .simplebar-content-wrapper;
 }
 
 // Include Slick
-@import "slick/slick";
+@import 'slick/slick';
 
 // Include dropzone
-@import "dropzone/dropzone";
+@import 'dropzone/dropzone';
 
 // Include DataTable
-@import "dataTable/datatable";
+// @import "dataTable/datatable";
 
 // Include React datatable
-@import "react-datatable/react-datatable";
+@import 'react-datatable/react-datatable';
 
 // Include SweetAlert2
-@import "sweetalert2/sweetalert2";
+@import 'sweetalert2/sweetalert2';
 
 // Include tagify
-@import "tagify";
+@import 'tagify';
 
 // Include Quill
-@import "quill/quill";
+@import 'quill/quill';
 
 // Include Tinymce
-@import "tinymce/base";
+@import 'tinymce/base';
 
 // Include fullcalendar
-@import "fullcalendar";
+@import 'fullcalendar';
 
 // Include nouiSlider
-@import "nouislider/nouislider";
+@import 'nouislider/nouislider';
 
 // Include Dual ListBox
-@import "dual-listbox/dual-listbox";
+@import 'dual-listbox/dual-listbox';
 
 // Include React select
-@import "react-select/react-select";
+@import 'react-select/react-select';
 
 // Include Magnific Pop up
-@import "magnific-popup/main";
+@import 'magnific-popup/main';
 
 // Include React modal video
-@import "react-modal-video/react-modal-video";
+@import 'react-modal-video/react-modal-video';
 
 // Include React Datepicker
-@import "react-datepicker/react-datepicker";
+@import 'react-datepicker/react-datepicker';
 
 // Include React Toastify
-@import "react-toastify/react-toastify";
+@import 'react-toastify/react-toastify';
 
 // Include jvector map
-@import "jvector-map/jvector";
+@import 'jvector-map/jvector';
 
 // Include jsTree
-@import "jsTree/jsTree";
+@import 'jsTree/jsTree';
 
 // Include kanban
-@import "kanban";
+@import 'kanban';

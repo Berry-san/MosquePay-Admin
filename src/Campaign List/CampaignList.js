@@ -154,7 +154,7 @@ export default function CampaignList() {
   }
 
   const handleExportExcel = () => {
-    exportToExcel(campaign)
+    exportToExcel(campaign, 'Campaign List')
   }
 
   const handleExportPDF = () => {

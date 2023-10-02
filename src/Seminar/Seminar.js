@@ -81,7 +81,7 @@ export default function Seminar() {
   }
 
   const handleExportExcel = () => {
-    exportToExcel(seminar)
+    exportToExcel(seminar, 'Seminar')
   }
 
   const handleExportPDF = () => {
