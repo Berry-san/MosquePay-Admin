@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { Bar } from 'react-chartjs-2'
 import axios from 'axios'
 import { WEB_BASE } from '../APIBase'
+import axiosInstance from '../utils/axios'
 
 export default function UserChart() {
   const [active, setActive] = useState('')
   const [inActive, setInActive] = useState('')
 
   useEffect(() => {
-    axios
-      .get(WEB_BASE + 'count_all_user', { headers: { 'x-api-key': '987655' } })
+    axiosInstance
+      .get('count_all_user')
       .then((res) => {
         setActive(res.data.result.ACTIVE)
         setInActive(res.data.result.INACTIVE)

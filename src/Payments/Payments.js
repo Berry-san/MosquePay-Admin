@@ -19,6 +19,7 @@ import {
   NewPagination,
 } from '../component/Component'
 import axios from 'axios'
+import axiosInstance from '../utils/axios'
 
 export default function Payments() {
   const [payment, setPayment] = useState([])
@@ -29,13 +30,9 @@ export default function Payments() {
   const ITEMS_PER_PAGE = 10
 
   useEffect(() => {
-    axios
-      .get(WEB_BASE + 'campaign_donation', {
-        headers: { 'x-api-key': '987655' },
-      })
-      .then((res) => {
-        setPayment(res.data.result)
-      })
+    axiosInstance.get('campaign_donation').then((res) => {
+      setPayment(res.data.result)
+    })
   }, [])
 
   // function to toggle the search option

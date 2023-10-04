@@ -22,6 +22,7 @@ import {
   NewPagination,
 } from '../component/Component'
 import axios from 'axios'
+import axiosInstance from '../utils/axios'
 
 export default function Seminar() {
   const [seminar, setSeminar] = useState([])
@@ -33,14 +34,9 @@ export default function Seminar() {
   const ITEMS_PER_PAGE = 10
 
   useEffect(() => {
-    axios
-      // .get(WEB_BASE + 'short_seminar', { headers: { 'x-api-key': '987655' } })
-      .get('http://mosquepay.org/mosquepayapi/v1/api/list_seminar', {
-        headers: { 'x-api-key': '987655' },
-      })
-      .then((res) => {
-        setSeminar(res.data.result)
-      })
+    axiosInstance.get('list_seminar').then((res) => {
+      setSeminar(res.data.result)
+    })
   }, [])
 
   // function to toggle the search option
@@ -336,8 +332,8 @@ export default function Seminar() {
                   </tr>
                 </thead>
                 <tbody>
-                  {productData.map((camp) => (
-                    <tr key={camp.id} className="tb-tnx-item">
+                  {productData.map((camp, index) => (
+                    <tr key={index} className="tb-tnx-item">
                       <td className="border-2">{camp.fullname}</td>
                       <td className="border-2">{camp.phonenumber}</td>
                       <td className="border-2">{camp.whatsapp_number}</td>

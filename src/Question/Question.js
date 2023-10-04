@@ -19,6 +19,7 @@ import {
   NewPagination,
 } from '../component/Component'
 import axios from 'axios'
+import axiosInstance from '../utils/axios'
 
 export default function Question() {
   const [questions, setQuestions] = useState([])
@@ -40,19 +41,13 @@ export default function Question() {
     e.preventDefault()
     console.log(question, description)
     try {
-      const res = axios.post(
-        WEB_BASE + 'create_questioncategory',
+      const res = axiosInstance.post(
+        'create_questioncategory',
         qs.stringify({
           category: question,
           description: description,
           admin_id: admin_idd,
-        }),
-        {
-          headers: {
-            'x-api-key': '987655',
-            'content-type': 'application/x-www-form-urlencoded',
-          },
-        }
+        })
       )
       console.log(res)
       alert('Question Created Successfully')
@@ -64,10 +59,8 @@ export default function Question() {
   }
 
   useEffect(() => {
-    axios
-      .get(WEB_BASE + 'question_category', {
-        headers: { 'x-api-key': '987655' },
-      })
+    axiosInstance
+      .get( 'question_category')
       .then((res) => {
         setQuestions(res.data.result)
       })
@@ -104,7 +97,7 @@ export default function Question() {
   }, [questions, currentPage, search])
 
   return (
-    <div className="w-10/12 pt-20 mx-auto  md:pt-16">
+    <div className="w-10/12 pt-20 mx-auto md:pt-16">
       <Content>
         <BlockHead size="sm">
           <BlockBetween>
@@ -212,10 +205,10 @@ export default function Question() {
                         <Link to={`/questionupdate/${ques.id}`}>
                           <img
                             src={Updatee}
-                            className="hidden w-5 h-5 mx-auto text-blue-400 underline  hover:underline-offset-4 md:block"
+                            className="hidden w-5 h-5 mx-auto text-blue-400 underline hover:underline-offset-4 md:block"
                             alt="update"
                           />
-                          <p className="block text-blue-500 underline  md:hidden hover:underline-offset-4">
+                          <p className="block text-blue-500 underline md:hidden hover:underline-offset-4">
                             Update{' '}
                           </p>
                         </Link>{' '}
@@ -271,7 +264,7 @@ export default function Question() {
             <h5 className="title"> Create Question Category</h5>
             <div className="mt-4">
               <form onSubmit={handleSubmit}>
-                <div className="w-3/4 mx-auto  row min-w-fit">
+                <div className="w-3/4 mx-auto row min-w-fit">
                   <Col md="12">
                     <FormGroup>
                       <label>Category Name</label>
@@ -279,7 +272,7 @@ export default function Question() {
                         type="text"
                         value={question}
                         onChange={(e) => setQuestion(e.target.value)}
-                        className="bg-gray-100 rounded-md  form-control"
+                        className="bg-gray-100 rounded-md form-control"
                       />
                     </FormGroup>
                   </Col>
@@ -294,7 +287,7 @@ export default function Question() {
                     </FormGroup>
                   </Col>
                   <button
-                    className="mt-4 text-white bg-green-800 rounded-md  form-control hover:bg-green-500"
+                    className="mt-4 text-white bg-green-800 rounded-md form-control hover:bg-green-500"
                     type="submit"
                   >
                     Submit

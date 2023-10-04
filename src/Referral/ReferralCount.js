@@ -19,6 +19,7 @@ import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
 import { CSVLink } from 'react-csv'
 import { exportToExcel } from '../component/utils/exportUtils'
+import axiosInstance from '../utils/axios'
 function ReferralCount() {
   const [campaign, setCampaign] = useState([])
   const [onSearch, setonSearch] = useState(true)
@@ -30,8 +31,8 @@ function ReferralCount() {
   const ITEMS_PER_PAGE = 10
 
   useEffect(() => {
-    axios
-      .get(WEB_BASE + 'count_referral', { headers: { 'x-api-key': '987655' } })
+    axiosInstance
+      .get( 'count_referral')
       .then((res) => {
         setCampaign(res.data.result)
       })

@@ -15,6 +15,7 @@ import {
 } from '../component/Component'
 import axios from 'axios'
 import { WEB_BASE } from '../APIBase'
+import axiosInstance from '../utils/axios'
 
 function QuestionsAdmin() {
   const [questions, setQuestions] = useState([])
@@ -26,10 +27,8 @@ function QuestionsAdmin() {
   const ITEMS_PER_PAGE = 10
 
   useEffect(() => {
-    axios
-      .get(WEB_BASE + 'list_allquestion', {
-        headers: { 'x-api-key': '987655' },
-      })
+    axiosInstance
+      .get('list_allquestion')
       .then((res) => {
         setQuestions(res.data.result)
       })

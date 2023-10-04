@@ -19,6 +19,7 @@ import {
 } from '../component/Component'
 import axios from 'axios'
 import { WEB_BASE } from '../APIBase'
+import axiosInstance from '../utils/axios'
 
 export default function Sheikh() {
   const [sheikh, setSheikh] = useState([])
@@ -39,8 +40,8 @@ export default function Sheikh() {
   const handleSubmit = (e) => {
     e.preventDefault()
     try {
-      axios.post(
-        WEB_BASE + 'create_sheikh',
+      axiosInstance.post(
+        'create_sheikh',
         qs.stringify({
           sheikh_name: sheikhName,
           email: sheikhEmail,
@@ -105,7 +106,7 @@ export default function Sheikh() {
   const data = sheikh
 
   return (
-    <div className="w-10/12 pt-20 mx-auto  md:pt-16">
+    <div className="w-10/12 pt-20 mx-auto md:pt-16">
       <Content>
         <BlockHead size="sm">
           <BlockBetween>
@@ -221,10 +222,10 @@ export default function Sheikh() {
                         <Link to={`/sheikhupdate/${sheikh.id}`}>
                           <img
                             src={Updatee}
-                            className="hidden w-5 h-5 mx-auto text-blue-400 underline  hover:underline-offset-4 md:block"
+                            className="hidden w-5 h-5 mx-auto text-blue-400 underline hover:underline-offset-4 md:block"
                             alt="update"
                           />
-                          <p className="block text-blue-500 underline  md:hidden hover:underline-offset-4">
+                          <p className="block text-blue-500 underline md:hidden hover:underline-offset-4">
                             Update{' '}
                           </p>
                         </Link>{' '}
@@ -277,7 +278,7 @@ export default function Sheikh() {
             <h5 className="text-center title"> Create Sheikh Account</h5>
             <div className="mt-4">
               <form onSubmit={handleSubmit}>
-                <div className="w-3/4 mx-auto  row min-w-fit">
+                <div className="w-3/4 mx-auto row min-w-fit">
                   <Col md="12">
                     <FormGroup>
                       <label>Sheikh Name</label>
@@ -286,7 +287,7 @@ export default function Sheikh() {
                         required
                         value={sheikhName}
                         onChange={(e) => setSheikhName(e.target.value)}
-                        className="w-full p-3 mb-3 bg-gray-100 rounded-md  input-round"
+                        className="w-full p-3 mb-3 bg-gray-100 rounded-md input-round"
                       />
                     </FormGroup>
                   </Col>
@@ -298,7 +299,7 @@ export default function Sheikh() {
                         required
                         value={sheikhEmail}
                         onChange={(e) => setSheikhEmail(e.target.value)}
-                        className="w-full p-3 mb-3 bg-gray-100 rounded-md  input-round"
+                        className="w-full p-3 mb-3 bg-gray-100 rounded-md input-round"
                       />
                     </FormGroup>
                   </Col>
@@ -310,12 +311,12 @@ export default function Sheikh() {
                         required
                         value={sheikhPassword}
                         onChange={(e) => setSheikhPassword(e.target.value)}
-                        className="w-full p-3 mb-3 bg-gray-100 rounded-md  input-round"
+                        className="w-full p-3 mb-3 bg-gray-100 rounded-md input-round"
                       />
                     </FormGroup>
                   </Col>
                   <button
-                    className="mt-4 text-white bg-green-800 rounded-md  form-control hover:bg-green-500"
+                    className="mt-4 text-white bg-green-800 rounded-md form-control hover:bg-green-500"
                     type="submit"
                   >
                     Submit

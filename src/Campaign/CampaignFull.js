@@ -5,6 +5,7 @@ import qs from 'qs'
 import { FormGroup, Modal, ModalBody } from 'reactstrap'
 import { WEB_BASE } from '../APIBase'
 import { Icon, Col } from '../component/Component'
+import axiosInstance from '../utils/axios'
 
 export default function CampaignFull() {
   let { id } = useParams()
@@ -47,10 +48,8 @@ export default function CampaignFull() {
   const admin_idd = sessionStorage.getItem('admin_iid')
 
   useEffect(() => {
-    axios
-      .get(WEB_BASE + `full_campaign/${id}`, {
-        headers: { 'x-api-key': '987655' },
-      })
+    axiosInstance
+      .get( `full_campaign/${id}`)
       .then((res) => {
         console.log(res)
         setCampId(res.data.result[0].CampaignID)

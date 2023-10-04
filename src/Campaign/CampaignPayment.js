@@ -5,6 +5,7 @@ import axios from 'axios'
 import { Modal, ModalBody } from 'reactstrap'
 import { WEB_BASE } from '../APIBase'
 import { Icon } from '../component/Component'
+import axiosInstance from '../utils/axios'
 
 export default function CampaignPayment() {
   const [payments, setPayment] = useState([])
@@ -14,10 +15,8 @@ export default function CampaignPayment() {
   let { payment } = useParams()
 
   useEffect(() => {
-    axios
-      .get(WEB_BASE + `campaign_recent_donation/${payment}`, {
-        headers: { 'x-api-key': '987655' },
-      })
+    axiosInstance
+      .get(`campaign_recent_donation/${payment}`)
       .then((res) => {
         setPayment(res.data.result)
       })
@@ -34,7 +33,7 @@ export default function CampaignPayment() {
           <Link to="/campaign" className="close">
             <Icon name="cross-sm"></Icon>
           </Link>
-          <table className="table-auto w-full text-center">
+          <table className="w-full text-center table-auto">
             <thead>
               <tr className="tb-tnx-head border-y-2">
                 <th className="border-2">Name</th>
@@ -55,7 +54,7 @@ export default function CampaignPayment() {
             </tbody>
           </table>
           {payments.length === 0 ? (
-            <p className=" text-center text-red-800">No Payments made yet</p>
+            <p className="text-center text-red-800 ">No Payments made yet</p>
           ) : null}
         </ModalBody>
       </Modal>

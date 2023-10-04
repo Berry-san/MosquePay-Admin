@@ -7,6 +7,7 @@ import { WEB_BASE } from '../APIBase'
 import { Icon } from '../component/Component'
 import Cancel from '../images/x.svg'
 import Check from '../images/ck.svg'
+import axiosInstance from '../utils/axios'
 
 function QuestionDelete() {
   let { id } = useParams()
@@ -17,15 +18,9 @@ function QuestionDelete() {
 
   const handleDelete = () => {
     try {
-      const res = axios.post(
-        WEB_BASE + 'delete_question',
+      const res = axiosInstance.post(
+        'delete_question',
         qs.stringify({ id: id }),
-        {
-          headers: {
-            'x-api-key': '987655',
-            'content-type': 'application/x-www-form-urlencoded',
-          },
-        }
       )
       console.log(res)
       window.location.href = '/que'
@@ -48,21 +43,21 @@ function QuestionDelete() {
             <Icon name="cross-sm"></Icon>
           </Link>
 
-          <h1 className=" text-center pt-3 pb-3">
+          <h1 className="pt-3 pb-3 text-center ">
             Are you sure you want to delete?
           </h1>
 
           <div className="flex justify-around mt-6">
             <Link to={`/que`}>
-              <button className=" bg-red-600  rounded-lg p-2 px-4 text-white">
-                <img src={Cancel} alt="Cancel" className=" inline" />
-                <span className=" inline"> No</span>
+              <button className="p-2 px-4 text-white bg-red-600 rounded-lg ">
+                <img src={Cancel} alt="Cancel" className="inline " />
+                <span className="inline "> No</span>
               </button>
             </Link>
             <form onSubmit={handleDelete}>
-              <button className=" bg-green-600 rounded-lg p-2 px-4 text-white">
-                <img src={Check} alt="Check" className=" inline" />
-                <span className=" inline"> Yes</span>
+              <button className="p-2 px-4 text-white bg-green-600 rounded-lg ">
+                <img src={Check} alt="Check" className="inline " />
+                <span className="inline "> Yes</span>
               </button>
             </form>
           </div>

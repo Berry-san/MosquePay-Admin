@@ -22,6 +22,7 @@ import {
   NewPagination,
 } from '../component/Component'
 import axios from 'axios'
+import axiosInstance from '../utils/axios'
 
 export default function Campaign() {
   const [campaign, setCampaign] = useState([])
@@ -32,14 +33,9 @@ export default function Campaign() {
   const ITEMS_PER_PAGE = 10
 
   useEffect(() => {
-    axios
-      // .get(WEB_BASE + 'short_campaign', { headers: { 'x-api-key': '987655' } })
-      .get('https://mosquepay.org/mosquepayapi/v1/api/short_campaign', {
-        headers: { 'x-api-key': '987655' },
-      })
-      .then((res) => {
-        setCampaign(res.data.result)
-      })
+    axiosInstance.get('short_campaign').then((res) => {
+      setCampaign(res.data.result)
+    })
   }, [])
 
   // function to toggle the search option

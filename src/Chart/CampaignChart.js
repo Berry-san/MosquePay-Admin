@@ -4,6 +4,7 @@ import { Pie } from 'react-chartjs-2'
 import Chart from 'react-apexcharts'
 import axios from 'axios'
 import { WEB_BASE } from '../APIBase'
+import axiosInstance from '../utils/axios'
 
 export default function CampaignChart() {
   const [campActive, setCampActive] = useState('')
@@ -96,8 +97,8 @@ export default function CampaignChart() {
   }
 
   useEffect(() => {
-    axios
-      .get(WEB_BASE + 'count_campaign', { headers: { 'x-api-key': '987655' } })
+    axiosInstance
+      .get('count_campaign')
       .then((res) => {
         setCampActive(res.data.result.APPROVE)
         setCampRejected(res.data.result.REJECT)
@@ -107,7 +108,7 @@ export default function CampaignChart() {
   }, [])
 
   return (
-    <div className="flex flex-col justify-between md:mb-28 space-y-8">
+    <div className="flex flex-col justify-between space-y-8 md:mb-28">
       {/* <Pie
         data={{
           labels: ['Active', 'Inactive', 'Rejected'],
@@ -130,7 +131,7 @@ export default function CampaignChart() {
           },
         }}
       /> */}
-      <p className="text-center font-bold text-xl ">Campaign Count</p>
+      <p className="text-xl font-bold text-center ">Campaign Count</p>
       <ReactApexChart
         options={chartData.options}
         series={chartData.series}

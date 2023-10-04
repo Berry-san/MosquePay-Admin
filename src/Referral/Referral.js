@@ -16,6 +16,7 @@ import {
 import axios from 'axios'
 import { WEB_BASE } from '../APIBase'
 import ReferralDetails from './ReferralDetails'
+import axiosInstance from '../utils/axios'
 
 function Referral() {
   const [campaign, setCampaign] = useState([])
@@ -30,10 +31,8 @@ function Referral() {
   const ITEMS_PER_PAGE = 10
 
   useEffect(() => {
-    axios
-      .get(WEB_BASE + 'campaign_payment_details', {
-        headers: { 'x-api-key': '987655' },
-      })
+    axiosInstance
+      .get('campaign_payment_details')
       .then((res) => {
         setCampaign(res.data.result)
       })

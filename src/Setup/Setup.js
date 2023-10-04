@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import Navbar from '../Components/Navbar'
 import { Spinner } from 'reactstrap'
 import { WEB_BASE } from '../APIBase'
+import axiosInstance from '../utils/axios'
 export default function Setup() {
   const [password, setPassword] = useState('')
   const [passwordConfim, setPasswordConfirm] = useState('')
@@ -21,9 +22,9 @@ export default function Setup() {
     if (password == passwordConfim) {
       console.log(password, email)
       setLoading(true)
-      axios
+      axiosInstance
         .post(
-          WEB_BASE + 'activate_sheikh',
+          'activate_sheikh',
           qs.stringify({ email: email, password: password }),
           {
             headers: {
@@ -53,13 +54,13 @@ export default function Setup() {
     <div>
       <Navbar />
       <div className="h-full pt-20">
-        <div className="form-back  z-10">
-          <div className=" text-center pt-10">
-            <h1 className=" text-black">Create Password </h1>
+        <div className="z-10 form-back">
+          <div className="pt-10 text-center ">
+            <h1 className="text-black ">Create Password </h1>
           </div>
-          <div className=" w-1/3 my-2 min-w-fit pb-10 pt-1 mx-auto bg-white relative drop-shadow-lg px-8 border-slate-900 z-10 rounded-md">
+          <div className="relative z-10 w-1/3 px-8 pt-1 pb-10 mx-auto my-2 bg-white rounded-md  min-w-fit drop-shadow-lg border-slate-900">
             <form onSubmit={handleSubmit}>
-              <p className=" text-center"> Activate your password</p>
+              <p className="text-center "> Activate your password</p>
               <div className="mt-10">
                 <label className="text-black" htmlFor="email">
                   Email
@@ -67,7 +68,7 @@ export default function Setup() {
                 <input
                   placeholder="Email"
                   id="user-email"
-                  className="form-control input-round w-full p-3 bg-gray-100"
+                  className="w-full p-3 bg-gray-100 form-control input-round"
                   type="email"
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
@@ -81,7 +82,7 @@ export default function Setup() {
                 <input
                   placeholder="Password"
                   id="user-pword"
-                  className="form-control input-round  w-full p-3 bg-gray-100"
+                  className="w-full p-3 bg-gray-100 form-control input-round"
                   type="Password"
                   onChange={(e) => setPassword(e.target.value)}
                   value={password}
@@ -95,7 +96,7 @@ export default function Setup() {
                 <input
                   placeholder="Password"
                   id="user-pword"
-                  className="form-control input-round  w-full p-3 bg-gray-100"
+                  className="w-full p-3 bg-gray-100 form-control input-round"
                   type="Password"
                   onChange={(e) => setPasswordConfirm(e.target.value)}
                   value={passwordConfim}
@@ -103,13 +104,13 @@ export default function Setup() {
                 />
               </div>
               {error && (
-                <div className="text-red-600 text-center pt-3">{error}</div>
+                <div className="pt-3 text-center text-red-600">{error}</div>
               )}
 
               <div className="mt-10">
                 <button
                   type="submit"
-                  className="btn bg-green-600 text-white rounded-md mb-3 hover:bg-green-700 hover:text-slate-100 w-full p-3"
+                  className="w-full p-3 mb-3 text-white bg-green-600 rounded-md btn hover:bg-green-700 hover:text-slate-100"
                 >
                   {loading ? (
                     <Spinner size="sm" color="light" />

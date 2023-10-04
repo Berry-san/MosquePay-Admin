@@ -11,6 +11,7 @@ import fridayDon from '../assets/svgs/fridayDonations.svg'
 import Content from '../Layout/Content/Content'
 import { Block } from '../component/Component'
 import { WEB_BASE } from '../APIBase'
+import axiosInstance from '../utils/axios'
 
 export default function Chart() {
   const [question, setQuestion] = useState('')
@@ -21,45 +22,36 @@ export default function Chart() {
   const [totalUsers, setTotalUsers] = useState('')
 
   useEffect(() => {
-    axios
-      .get(WEB_BASE + 'count_question_category', {
-        headers: { 'x-api-key': '987655' },
-      })
+    axiosInstance
+      .get('count_question_category')
       .then((res) => {
         setQuestion(res.data.result[0].Number_of_question_Category)
       })
       .catch((err) => console.log(err))
 
-    axios
-      .get(WEB_BASE + 'count_needy_category', {
-        headers: { 'x-api-key': '987655' },
-      })
+    axiosInstance
+      .get('count_needy_category')
       .then((res) => {
         setNeedy(res.data.result[0].Number_of_Needy_category)
       })
       .catch((err) => console.log(err))
 
-    axios
-      .get(WEB_BASE + 'count_sheikh', { headers: { 'x-api-key': '987655' } })
+    axiosInstance
+      .get('count_sheikh')
       .then((res) => {
         setSheikh(res.data.result[0].Number_of_Sheikh)
       })
       .catch((err) => console.log(err))
 
-    axios
-      .get(WEB_BASE + 'friday_donation', { headers: { 'x-api-key': '987655' } })
+    axiosInstance
+      .get('friday_donation')
       .then((res) => {
         setFridayDonation(res.data.result[0].Number_of_Friday_donation)
       })
       .catch((err) => console.log(err))
 
-    axios
-      .get(
-        'https://mosquepay.org/mosquepayapi/v1/api/campaigns_total_donation',
-        {
-          headers: { 'x-api-key': '987655' },
-        }
-      )
+    axiosInstance
+      .get('campaigns_total_donation')
       .then((res) => {
         setFridayDonation(res.data.result[0].Number_of_Friday_donation)
         console.log(fridayDon)
@@ -69,12 +61,7 @@ export default function Chart() {
 
   const digits = async () => {
     try {
-      const res = await axios.get(
-        `https://mosquepay.org/mosquepayapi/v1/api/campaigns_total_donation`,
-        {
-          headers: { 'x-api-key': '987655' },
-        }
-      )
+      const res = await axiosInstance.get('campaigns_total_donation')
       // console.log(res.data.total_number_of_user)
       setTotalAmount(res.data.total_amount[0].amount)
       setTotalUsers(res.data.total_number_of_user[0].Txn_count)

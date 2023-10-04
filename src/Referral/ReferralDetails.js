@@ -4,6 +4,7 @@ import { Modal, ModalBody } from 'reactstrap'
 import { WEB_BASE } from '../APIBase'
 import { Icon } from '../component/Component'
 import ReactHTMLTableToExcel from 'react-html-table-to-excel'
+import axiosInstance from '../utils/axios'
 
 export default function ReferralDetails({ open, payment, handleClose }) {
   const [payments, setPayment] = useState([])
@@ -14,11 +15,8 @@ export default function ReferralDetails({ open, payment, handleClose }) {
   }, [payment])
 
   useEffect(() => {
-    axios
-      .get(
-        WEB_BASE + `single_campaign_payment_detail?campaign_reference=${ref}`,
-        { headers: { 'x-api-key': '987655' } }
-      )
+    axiosInstance
+      .get(`single_campaign_payment_detail?campaign_reference=${ref}`)
       .then((res) => {
         setPayment(res.data.result)
       })
@@ -34,7 +32,7 @@ export default function ReferralDetails({ open, payment, handleClose }) {
           <div className="flex justify-end mb-3">
             <ReactHTMLTableToExcel
               id="table-xls-button"
-              className="p-2 rounded-xl bg-green-700 hover:bg-green-500 mt-1 mr-2 underline underline-offset-1 text-white"
+              className="p-2 mt-1 mr-2 text-white underline bg-green-700 rounded-xl hover:bg-green-500 underline-offset-1"
               table="referral-details-table"
               filename="Campaigndetails"
               sheet="tablexls"
@@ -42,7 +40,7 @@ export default function ReferralDetails({ open, payment, handleClose }) {
             />
           </div>
           <table
-            className="table-auto w-full text-center"
+            className="w-full text-center table-auto"
             id="referral-details-table"
           >
             <thead>
@@ -71,7 +69,7 @@ export default function ReferralDetails({ open, payment, handleClose }) {
             </tbody>
           </table>
           {payments.length === 0 ? (
-            <p className=" text-center text-red-800">No Payments made yet</p>
+            <p className="text-center text-red-800 ">No Payments made yet</p>
           ) : null}
         </ModalBody>
       </Modal>

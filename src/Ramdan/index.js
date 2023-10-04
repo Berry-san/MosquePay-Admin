@@ -19,6 +19,7 @@ import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
 import { CSVLink } from 'react-csv'
 import { exportToExcel } from '../component/utils/exportUtils'
+import axiosInstance from '../utils/axios'
 
 export default function Ramdan() {
   const [ramadan, setRamadan] = useState([])
@@ -29,13 +30,12 @@ export default function Ramdan() {
   const ITEMS_PER_PAGE = 10
 
   useEffect(() => {
-    axios
-      .get(WEB_BASE + 'list_ramdan_subscribers', {
+    axiosInstance
+      .get('list_ramdan_subscribers', {
         headers: { 'x-api-key': '987655' },
       })
       .then((res) => {
         setRamadan(res.data.result)
-        console.log(res.data.result)
       })
   }, [])
 

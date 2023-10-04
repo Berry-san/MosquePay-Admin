@@ -17,8 +17,7 @@ import {
   // PaginationComponent,
   NewPagination,
 } from '../component/Component'
-import axios from 'axios'
-import { WEB_BASE } from '../APIBase'
+import axiosInstance from '../utils/axios'
 
 export default function User() {
   const [users, setUsers] = useState([])
@@ -30,10 +29,8 @@ export default function User() {
   const ITEMS_PER_PAGE = 10
 
   useEffect(() => {
-    axios
-      .get(WEB_BASE + 'all_user_account', {
-        headers: { 'x-api-key': '987655' },
-      })
+    axiosInstance
+      .get('all_user_account')
       .then((res) => {
         setUsers(res.data.result)
       })

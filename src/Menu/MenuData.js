@@ -113,11 +113,11 @@ const adminmenu = [
       },
     ],
   },
-  {
-    icon: 'dashlite',
-    text: ' Questions',
-    link: '/que',
-  },
+  // {
+  //   icon: 'dashlite',
+  //   text: ' Questions',
+  //   link: '/que',
+  // },
   {
     icon: 'help',
     text: 'Question List',

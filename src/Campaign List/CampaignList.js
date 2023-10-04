@@ -20,6 +20,7 @@ import {
   NewPagination,
 } from '../component/Component'
 import axios from 'axios'
+import axiosInstance from '../utils/axios'
 import Campaign from '../Campaign/Campaign'
 
 export default function CampaignList() {
@@ -31,6 +32,7 @@ export default function CampaignList() {
   const [search, setSearch] = useState('')
   const [sortDirection, setSortDirection] = useState('asc')
   const [currentPage, setCurrentPage] = useState(1)
+  const [isLoading, setIsLoading] = useState(true)
   const ITEMS_PER_PAGE = 10
 
   const handleSelectChange = (event) => {
@@ -38,18 +40,14 @@ export default function CampaignList() {
   }
 
   useEffect(() => {
-    axios
-      // .get(WEB_BASE + 'short_list', { headers: { 'x-api-key': '987655' } })
-      .get('http://mosquepay.org/mosquepayapi/v1/api/list_campaign_reference', {
-        headers: { 'x-api-key': '987655' },
-      })
-      .then((res) => {
-        const dataWithId = res.data.result.map((item, index) => ({
-          ...item,
-          id: index + 1,
-        }))
-        setList(dataWithId)
-      })
+    axiosInstance.get('list_campaign_reference').then((res) => {
+      const dataWithId = res.data.result.map((item, index) => ({
+        ...item,
+        id: index + 1,
+      }))
+      setList(dataWithId)
+      setIsLoading(false)
+    })
   }, [])
 
   // useEffect(() => {
@@ -85,17 +83,10 @@ export default function CampaignList() {
   // }, [selectedOption])
   useEffect(() => {
     if (selectedOption) {
-      const config = {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'x-api-key': 987655,
-        },
-      }
-      axios
+      axiosInstance
         .post(
-          `http://mosquepay.org/mosquepayapi/v1/api/campiagn_payment_camp_ref`,
-          qs.stringify({ campaign_reference: selectedOption }),
-          config
+          'campiagn_payment_camp_ref',
+          qs.stringify({ campaign_reference: selectedOption })
         )
         .then((res) => {
           if (res.data.result && Array.isArray(res.data.result)) {
@@ -330,15 +321,21 @@ export default function CampaignList() {
                   value={selectedOption}
                   onChange={handleSelectChange}
                   className="p-2 rounded w-[22rem] xl:w-[26rem] focus:border-none mt-2 bg-[#F5F6FA]"
+                  disabled={isLoading} // Disable the select while loading
                 >
-                  <option value="">--</option>
-                  {list.map((list) => {
-                    return (
-                      <option key={list.id} value={list.campaign_reference}>
-                        {list.title}
-                      </option>
-                    )
-                  })}
+                  {/* <option value="">--</option> */}
+                  {isLoading ? (
+                    <option>Loading...</option>
+                  ) : (
+                    <>
+                      <option value="">--</option>
+                      {list.map((item) => (
+                        <option key={item.id} value={item.campaign_reference}>
+                          {item.title}
+                        </option>
+                      ))}
+                    </>
+                  )}
                 </select>
               </div>
               <div className="flex items-center justify-end mt-3">
