@@ -296,50 +296,26 @@ export default function Campaign() {
                         handleSort()
                       }}
                     >
-                      Start Date
-                    </th>
-                    <th className="border-2">End Date</th>
-                    {/* <th
-                      className="flex items-center justify-center mx-auto space-x-3 text-center border cursor-pointer"
-                      onClick={handleSort}
-                    >
-                      <span>End Date</span>
+                      Start Date{' '}
                       {sortDirection === 'asc' ? (
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            width="16"
-                            height="16"
-                          >
-                            <path
-                              d="M12.9999 7.82843V20H10.9999V7.82843L5.63589 13.1924L4.22168 11.7782L11.9999 4L19.778 11.7782L18.3638 13.1924L12.9999 7.82843Z"
-                              fill="rgba(82,100,132,1)"
-                            ></path>
-                          </svg>
+                        <span
+                          className="text-lg
+                        "
+                        >
+                          &darr;
                         </span>
                       ) : (
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            width="16"
-                            height="16"
-                          >
-                            <path
-                              d="M12.9999 16.1716L18.3638 10.8076L19.778 12.2218L11.9999 20L4.22168 12.2218L5.63589 10.8076L10.9999 16.1716V4H12.9999V16.1716Z"
-                              fill="rgba(82,100,132,1)"
-                            ></path>
-                          </svg>
-                        </span>
+                        <span className="text-lg">&uarr;</span>
                       )}
-                    </th> */}
+                    </th>
+                    <th className="border-2">End Date</th>
                     <th className="border-2">Amount</th>
                     <th className="border-2">Image</th>
                     <th className="border-2">Video</th>
                     <th className="border-2">Status</th>
                     <th className="border-2">Payments</th>
                     <th className="border-2">Details</th>
+                    <th className="border-2">Edit Campaign</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -396,6 +372,11 @@ export default function Campaign() {
                       </td>
                       <td className="text-blue-500 underline border-2 hover:underline-offset-4">
                         <Link to={`${camp.CampaignID}`}>Details</Link>
+                      </td>
+                      <td className="text-blue-500 underline border-2 hover:underline-offset-4">
+                        <Link to={`edit/${camp.CampaignID}`}>
+                          Edit Campaign
+                        </Link>
                       </td>
                     </tr>
                   ))}

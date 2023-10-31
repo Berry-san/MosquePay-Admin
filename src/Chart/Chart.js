@@ -270,24 +270,3 @@ export default function Chart() {
     </div>
   )
 }
-
-// // Whole page
-// ;<div className="p-4 mx-auto max-w-screen-2xl md:p-6 2xl:p-10">
-// // Grid rows
-//   <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-8">
-// // One Grid
-//     <div className="rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
-
-//       <div className="flex justify-end h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4">
-//         svg
-//       </div>
-//       <div className="flex flex-col items-center justify-center">
-//         <h4 class="text-title-md font-bold text-black dark:text-white">
-//           $3.456K
-//         </h4>
-//         <span class="text-sm font-medium">Total views</span>
-//       </div>
-//     </div>
-//   </div>
-//   <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5"></div>
-// </div>

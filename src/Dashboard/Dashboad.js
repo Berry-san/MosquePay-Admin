@@ -37,6 +37,7 @@ import Ramdan from '../Ramdan'
 import Aboutus from '../Aboutus'
 import Seminar from '../Seminar/Seminar'
 import CampaignList from '../Campaign List/CampaignList'
+import EditCampaign from '../Campaign/EditCampaign'
 
 const Layout = () => {
   //Sidebar
@@ -131,6 +132,7 @@ const Layout = () => {
                     path="payment/:payment"
                     element={<CampaignPayment />}
                   />
+                  <Route path="edit/:id" element={<EditCampaign />} />
                 </Route>
                 <Route path="/campaignList" element={<CampaignList />} />
                 <Route path="/payments" element={<Payments />} />

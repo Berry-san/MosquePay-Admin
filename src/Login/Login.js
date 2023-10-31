@@ -8,6 +8,7 @@ import { WEB_BASE } from '../APIBase'
 import { showErrorToast } from '../component/utils/alert'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import axiosInstance from '../utils/axios'
 
 export default function Login() {
   // const [user, setUser] = useState('');
@@ -21,17 +22,8 @@ export default function Login() {
     e.preventDefault()
     setLoading(true)
     //console.log(password,  email, name)
-    axios
-      .post(
-        WEB_BASE + 'back_login',
-        qs.stringify({ email: email, password: passcode }),
-        {
-          headers: {
-            'x-api-key': '987655',
-            'content-type': 'application/x-www-form-urlencoded',
-          },
-        }
-      )
+    axiosInstance
+      .post('back_login', qs.stringify({ email: email, password: passcode }))
       .then((res) => {
         // console.log(res.data)
         // alert(res.data.message)

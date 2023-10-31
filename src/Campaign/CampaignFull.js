@@ -9,6 +9,7 @@ import axiosInstance from '../utils/axios'
 
 export default function CampaignFull() {
   let { id } = useParams()
+  console.log(id)
 
   const [status, setStatus] = useState('')
   const [accountNo, setAccountNo] = useState('')
@@ -48,31 +49,29 @@ export default function CampaignFull() {
   const admin_idd = sessionStorage.getItem('admin_iid')
 
   useEffect(() => {
-    axiosInstance
-      .get( `full_campaign/${id}`)
-      .then((res) => {
-        console.log(res)
-        setCampId(res.data.result[0].CampaignID)
-        setCampTitle(res.data.result[0].title)
-        setCampType(res.data.result[0].Campaign_Type)
-        setCampEmail(res.data.result[0].email)
-        setCampStartDate(res.data.result[0].start_date)
-        setCampEndDate(res.data.result[0].end_date)
-        setCampAmount(res.data.result[0].amount)
-        setCampAccount(res.data.result[0].account_number)
-        setCampStatus(res.data.result[0].admin_status)
-        setCampApprovalDate(res.data.result[0].approval_dt)
-        setCampBankName(res.data.result[0].bank_name)
-        setCampBoardResolution(res.data.result[0].board_resolution)
-        setCampBvn(res.data.result[0].bvn)
-        setCampCac(res.data.result[0].cac_certificate)
-        setCampCo7(res.data.result[0].co7_form)
-        setCampInsertedDate(res.data.result[0].inserted_dt)
-        setCampReason(res.data.result[0].reason)
-        setCampRef(res.data.result[0].reference_letter)
-        setCampStory(res.data.result[0].campaign_story)
-        setCampBvn2(res.data.result[0].bvn_2)
-      })
+    axiosInstance.get(`full_campaign/${id}`).then((res) => {
+      console.log(res.data.result[0])
+      setCampId(res.data.result[0].CampaignID)
+      setCampTitle(res.data.result[0].title)
+      setCampType(res.data.result[0].Campaign_Type)
+      setCampEmail(res.data.result[0].email)
+      setCampStartDate(res.data.result[0].start_date)
+      setCampEndDate(res.data.result[0].end_date)
+      setCampAmount(res.data.result[0].amount)
+      setCampAccount(res.data.result[0].account_number)
+      setCampStatus(res.data.result[0].admin_status)
+      setCampApprovalDate(res.data.result[0].approval_dt)
+      setCampBankName(res.data.result[0].bank_name)
+      setCampBoardResolution(res.data.result[0].board_resolution)
+      setCampBvn(res.data.result[0].bvn)
+      setCampCac(res.data.result[0].cac_certificate)
+      setCampCo7(res.data.result[0].co7_form)
+      setCampInsertedDate(res.data.result[0].inserted_dt)
+      setCampReason(res.data.result[0].reason)
+      setCampRef(res.data.result[0].reference_letter)
+      setCampStory(res.data.result[0].campaign_story)
+      setCampBvn2(res.data.result[0].bvn_2)
+    })
   }, [id])
 
   const handleSubmit = (e) => {
@@ -88,6 +87,7 @@ export default function CampaignFull() {
           admin_id: admin_idd,
           account_no: accountNo,
           account_name: accountName,
+          title: campTitle,
         }),
         {
           headers: {
@@ -99,7 +99,8 @@ export default function CampaignFull() {
       console.log(res)
       alert('Campaign Approved Successfully')
 
-      window.location.href = '/campaign'
+      // window.location.href = '/campaign'
+      setModal({ add: false })
     } catch (e) {
       console.log(e.response)
     }
@@ -236,6 +237,18 @@ export default function CampaignFull() {
                   Update User Status
                 </h5>
                 <form onSubmit={handleSubmit} className="mt-4 row gy-4">
+                  {/* <Col md="12">
+                    <FormGroup>
+                      <label className="mb-1">Campaign Title</label>
+                      <input
+                        className="bg-gray-100 rounded-md form-control input-round"
+                        value={campTitle}
+                        onChange={(e) => setCampTitle(e.target.value)}
+                        required
+                        type="text"
+                      />
+                    </FormGroup>
+                  </Col> */}
                   <Col md="12">
                     <FormGroup>
                       <label className="mb-1">Campaign Reference</label>
@@ -486,9 +499,9 @@ export default function CampaignFull() {
                       <label className="mb-1">Reason</label>
                       <textarea
                         className="mb-3 bg-gray-100 rounded-md form-control"
-                        value={uReason}
+                        value={campReason}
+                        onChange={(e) => setCampReason(e.target.value)}
                         required
-                        onChange={(e) => setuReason(e.target.value)}
                       ></textarea>
                     </FormGroup>
                   </Col>
