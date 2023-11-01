@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { WEB_BASE } from '../APIBase'
 
+// Create an instance of Axios with a base URL and default headers
 const axiosInstance = axios.create({
   baseURL: WEB_BASE,
   // baseURL: '/api',

@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 import qs from 'qs'
 import Navbar from '../Components/Navbar'
 import { Icon } from '../component/Component'
 import { Spinner } from 'reactstrap'
-import { WEB_BASE } from '../APIBase'
-import { showErrorToast } from '../component/utils/alert'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import axiosInstance from '../utils/axios'
@@ -25,7 +22,7 @@ export default function Login() {
     axiosInstance
       .post('back_login', qs.stringify({ email: email, password: passcode }))
       .then((res) => {
-        // console.log(res.data)
+        console.log(res.data)
         // alert(res.data.message)
 
         if (res.data.message === 'Login Successful') {
