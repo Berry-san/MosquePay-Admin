@@ -20,7 +20,6 @@ export default function Setup() {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (password == passwordConfim) {
-      console.log(password, email)
       setLoading(true)
       axiosInstance
         .post(
@@ -58,7 +57,7 @@ export default function Setup() {
           <div className="pt-10 text-center ">
             <h1 className="text-black ">Create Password </h1>
           </div>
-          <div className="relative z-10 w-1/3 px-8 pt-1 pb-10 mx-auto my-2 bg-white rounded-md  min-w-fit drop-shadow-lg border-slate-900">
+          <div className="relative z-10 w-1/3 px-8 pt-1 pb-10 mx-auto my-2 bg-white rounded-md min-w-fit drop-shadow-lg border-slate-900">
             <form onSubmit={handleSubmit}>
               <p className="text-center "> Activate your password</p>
               <div className="mt-10">

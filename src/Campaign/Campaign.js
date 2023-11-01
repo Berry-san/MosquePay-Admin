@@ -55,7 +55,6 @@ export default function Campaign() {
       )
     }
     //window.alert(productData);
-    //console.log(productData)
 
     setTotalItems(productDetails.length)
 
@@ -298,12 +297,7 @@ export default function Campaign() {
                     >
                       Start Date{' '}
                       {sortDirection === 'asc' ? (
-                        <span
-                          className="text-lg
-                        "
-                        >
-                          &darr;
-                        </span>
+                        <span className="text-lg ">&darr;</span>
                       ) : (
                         <span className="text-lg">&uarr;</span>
                       )}

@@ -29,7 +29,6 @@ export default function EditCampaign() {
 
   useEffect(() => {
     axiosInstance.get(`full_campaign/${id}`).then((res) => {
-      //   console.log(res.data.result[0])
       setCampId(res.data.result[0].CampaignID)
       setCampTitle(res.data.result[0].title)
       setCampType(res.data.result[0].Campaign_Type)
@@ -63,19 +62,9 @@ export default function EditCampaign() {
       window.location.href = '/campaign'
       setModal({ add: false })
     } catch (e) {
-      // console.log(e.response)
       toast.error(e.response)
     }
   }
-  console.log(
-    campEmail,
-    campId,
-    campAmount,
-    campStory,
-    campTitle,
-    campStartDate,
-    campEndDate
-  )
 
   return (
     <div>

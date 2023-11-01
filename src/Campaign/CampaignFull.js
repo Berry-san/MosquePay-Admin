@@ -50,7 +50,6 @@ export default function CampaignFull() {
 
   useEffect(() => {
     axiosInstance.get(`full_campaign/${id}`).then((res) => {
-      console.log(res.data.result[0])
       setCampId(res.data.result[0].CampaignID)
       setCampTitle(res.data.result[0].title)
       setCampType(res.data.result[0].Campaign_Type)
@@ -116,7 +115,6 @@ export default function CampaignFull() {
         },
       })
       .then((res) => {
-        console.log(res.data.result.personal_info.full_name)
         setVerifyBvn(res.data.result.personal_info.full_name)
         setVerifyBvnNo(res.data.result.personal_info.phone_number)
         setVerifyName('Verification Completed')

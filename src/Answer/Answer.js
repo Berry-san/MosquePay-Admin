@@ -37,7 +37,6 @@ export default function Answer() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(id, answer, sheikh_id)
     try {
       const res = axios.post(
         WEB_BASE + 'answer_question',
@@ -69,7 +68,7 @@ export default function Answer() {
             <Icon name="cross-sm"></Icon>
           </Link>
           <div className="p-2">
-            <h1 className="pb-3 text-center text-gray-500  title">
+            <h1 className="pb-3 text-center text-gray-500 title">
               {' '}
               Question Details
             </h1>
@@ -99,7 +98,7 @@ export default function Answer() {
                 </Col>
 
                 <button
-                  className="text-white bg-green-800 rounded-md  form-control hover:bg-green-500"
+                  className="text-white bg-green-800 rounded-md form-control hover:bg-green-500"
                   type="submit"
                 >
                   Submit

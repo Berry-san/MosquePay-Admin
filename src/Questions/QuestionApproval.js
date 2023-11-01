@@ -16,7 +16,6 @@ function QuestionApproval() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(needyName)
     try {
       axiosInstance.post(
         `update_question_status`,

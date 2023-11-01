@@ -21,7 +21,7 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault()
     setLoading(true)
-    //console.log(password,  email, name)
+
     axiosInstance
       .post('back_login', qs.stringify({ email: email, password: passcode }))
       .then((res) => {
@@ -57,13 +57,14 @@ export default function Login() {
           setLoading(false)
           // showErrorToast(res.data.message)
           toast.error(res.data.message)
-          console.log()
+          console.log(res.data.message)
         }
       })
       .catch((err) => {
         setLoading(false)
         // showErrorToast(err.message)
         toast.error(err.message)
+        console.log(err.message)
       })
   }
   return (

@@ -53,8 +53,6 @@ export default function Seminar() {
         comment.fullname.toLowerCase().includes(search.toLowerCase())
       )
     }
-    //window.alert(productData);
-    //console.log(productData)
 
     setTotalItems(productDetails.length)
 
