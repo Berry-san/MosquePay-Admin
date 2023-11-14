@@ -3,7 +3,6 @@ import { useParams, Link } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import qs from 'qs'
 import { FormGroup, Modal, ModalBody } from 'reactstrap'
-import { WEB_BASE } from '../APIBase'
 import { Icon, Col } from '../component/Component'
 import axiosInstance from '../utils/axios'
 import Editor from '../component/Editor'
@@ -11,7 +10,6 @@ import Editor from '../component/Editor'
 export default function EditCampaign() {
   let { id } = useParams()
 
-  const [uReason, setuReason] = useState('')
   const [campId, setCampId] = useState('')
   const [campTitle, setCampTitle] = useState('')
   const [campType, setCampType] = useState('')
@@ -24,8 +22,6 @@ export default function EditCampaign() {
   const [modal, setModal] = useState({
     add: true,
   })
-
-  const admin_idd = sessionStorage.getItem('admin_iid')
 
   useEffect(() => {
     axiosInstance.get(`full_campaign/${id}`).then((res) => {
@@ -40,12 +36,13 @@ export default function EditCampaign() {
       setCampStory(res.data.result[0].campaign_story)
     })
   }, [id])
+  console.log(campStory)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     try {
-      axiosInstance.post(
+      const response = await axiosInstance.post(
         'update_campaigns',
         qs.stringify({
           email: campEmail,
@@ -57,10 +54,14 @@ export default function EditCampaign() {
           end_date: campEndDate,
         })
       )
-      toast.success('Campaign Approved Successfully')
 
-      window.location.href = '/campaign'
-      setModal({ add: false })
+      if (response.data['status_code'] === '0') {
+        toast.success(response.data.message)
+        window.location.href = '/campaign'
+        setModal({ add: false })
+      } else {
+        console.log(toast.error(response.data.message))
+      }
     } catch (e) {
       toast.error(e.response)
     }
@@ -100,7 +101,7 @@ export default function EditCampaign() {
                 </h3>
                 <h3 className="pb-3 "> Campaign End Date : {campEndDate}</h3>
                 <h3 className="pb-3 "> Campaign Amount : {campAmount}</h3>
-                {/* <h3 className="pb-3 "> Campaign reason : {campStory}</h3> */}
+                <h3 className="pb-3 "> Campaign reason : {campStory}</h3>
                 <h5 className="mt-3 mb-3 text-center text-green-900 ">
                   {' '}
                   Edit Campaign
@@ -132,6 +133,18 @@ export default function EditCampaign() {
                   </Col>
                   <Col md="12">
                     <FormGroup>
+                      <label className="mb-1">Amount</label>
+                      <input
+                        className="bg-gray-100 rounded-md form-control input-round"
+                        value={campAmount}
+                        onChange={(e) => setCampAmount(e.target.value)}
+                        required
+                        type="text"
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col md="12">
+                    <FormGroup>
                       <label className="mb-1">Campaign Title</label>
                       <input
                         className="bg-gray-100 rounded-md form-control input-round"
@@ -145,6 +158,13 @@ export default function EditCampaign() {
                   <Col md="12">
                     <FormGroup>
                       <label className="mb-1">Campaign Story</label>
+                      {/* <textarea
+                        className="bg-gray-100 rounded-md form-control input-round"
+                        value={campStory}
+                        onChange={(e) => setCampStory(e.target.value)}
+                        cols="30"
+                        rows="10"
+                      ></textarea> */}
                       <Editor
                         value={campStory}
                         onChange={(value) => setCampStory(value)}

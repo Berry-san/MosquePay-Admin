@@ -73,11 +73,11 @@ export default function CampaignFull() {
     })
   }, [id])
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     console.log(accountNo)
     try {
-      const res = axios.post(
+      const res = await axios.post(
         WEB_BASE + 'approve_campaign',
         qs.stringify({
           campaign_reference: campId,
@@ -104,7 +104,7 @@ export default function CampaignFull() {
       console.log(e.response)
     }
   }
-  const handleVerification = () => {
+  const handleVerification = async () => {
     setVerifyD(true)
     setVerifyName('Loading...')
     axios
@@ -134,7 +134,7 @@ export default function CampaignFull() {
     //   console.log(e.response);
     // }
   }
-  const handleVerification2 = () => {
+  const handleVerification2 = async () => {
     setVerifyD2(true)
     setVerifyName2('Loading...')
     axios

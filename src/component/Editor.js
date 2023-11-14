@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+// import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
+// import EditorImage from './EditorImage'
 
 function Editor({ value, onChange, id, name, placeholder }) {
   const handleChange = (html) => {
@@ -19,6 +20,7 @@ function Editor({ value, onChange, id, name, placeholder }) {
         formats={Editor.formats}
         bounds=".app"
         placeholder={placeholder}
+        // ref={quillRef}
       />
     </div>
   )
@@ -28,8 +30,8 @@ Editor.propTypes = {
   placeholder: PropTypes.string,
   id: PropTypes.string,
   name: PropTypes.string,
-  value: PropTypes.string, // Declare value as a prop
-  onChange: PropTypes.func, // Declare onChange as a prop
+  value: PropTypes.string,
+  onChange: PropTypes.func,
 }
 
 Editor.modules = {
